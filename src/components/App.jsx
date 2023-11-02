@@ -12,8 +12,10 @@ export const App = () => {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
   const [add, setAdd] = useState(true);
-  const [page,setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+
+  // fg
 
   useEffect(() => {
     async function getQuizzes() {
@@ -21,9 +23,9 @@ export const App = () => {
         setPage(1);
         setLoader(true);
         setError(false);
-  
+
         const newImeges = await fetchImeges(1);
-  
+
         if (12 >= newImeges.totalHits) {
           setAdd(false);
         }
@@ -38,8 +40,8 @@ export const App = () => {
     }
 
     getQuizzes();
-  },[])
-  
+  }, [])
+
   const changeSearch = async value => {
     if (value !== search) {
       try {
@@ -80,7 +82,7 @@ export const App = () => {
       setImeges(prevState => (
         [...prevState, ...newImeges.hits]
       ));
-      setPage(page+1);
+      setPage(page + 1);
     } catch (error) {
       setError(true);
     } finally {
